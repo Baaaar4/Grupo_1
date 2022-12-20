@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<h1> Bienvenido</h1>
+{% if form.errors %}
+        <p>Sus credenciales son inválidas</p>
+{% endif%}
+        <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button> Enviar </button>
+        </form>
+
+{% endblock content%}

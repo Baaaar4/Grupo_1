@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+        <h2>Saludos camaradas! </h2>
+        
+        {% if saludos >= 0 and saludos < 12 %}
+        <h2>¡Buenos días, {{ username }}!</h2>
+        {% elif saludos >= 12 and saludos < 20 %}
+        <h2>¡Buenas tardes, {{ username }}! </h2>
+        {% elif saludos >= 20 and saludos < 24 %}
+        <h2>¡Buenas noches, {{ username }}! </h2>
+
+        {% endif %}
+
+        <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit">
+        </form>
+       
+                {% if ideas %}
+                        {% for idea in ideas %}
+                        <section>
+                                <p> {{ idea.usuario }} dijo el  {{ idea.published_date }} lo siguiente:</p> 
+                                <p>"{{ idea.idea }}"</p><br>
+                            
+                        </section>
+                        {% endfor %}
+                {% else %}
+                <h1> No hay registros </h1>
+
+                 {% endif %}
+
+        
+
+        
+{% endblock content%}
